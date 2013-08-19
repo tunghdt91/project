@@ -92,3 +92,4 @@ class City extends CActiveRecord
 		));
 	}
 }
+?>
