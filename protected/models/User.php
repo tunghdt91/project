@@ -14,7 +14,12 @@
  * @property integer $city_id
  * @property integer $district_id
  * @property string $address
- * @property string $hobby
+ * @property string $hobby 
+ *
+ * The followings are the available model relations:
+ * @property City $city
+ * @property District $district
+ * @property Province $province
  */
 class User extends CActiveRecord
 {
@@ -64,6 +69,9 @@ class User extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'city' => array(self::BELONGS_TO, 'City', 'city_id'),
+			'district' => array(self::BELONGS_TO, 'District', 'district_id'),
+			'province' => array(self::BELONGS_TO, 'Province', 'province_id'),
 		);
 	}
 
