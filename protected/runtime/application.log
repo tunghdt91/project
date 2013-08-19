@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2013/08/19 05:09:33 [error] [exception.CException] exception 'CException' with message 'Property "CWebUser.username" is not defined.' in /Library/WebServer/Documents/framework/base/CComponent.php:130
 Stack trace:
 #0 /Library/WebServer/Documents/framework/web/auth/CWebUser.php(140): CComponent->__get('username')
@@ -169,4 +170,31 @@ Stack trace:
 #23 /Library/WebServer/Documents/project/index.php(13): CApplication->run()
 #24 {main}
 REQUEST_URI=/project/
+=======
+2013/08/19 11:15:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "login".' in /Users/macbook_001/projects/framework/web/CController.php:483
+Stack trace:
+#0 /Users/macbook_001/projects/framework/web/CController.php(270): CController->missingAction('login')
+#1 /Users/macbook_001/projects/framework/web/CWebApplication.php(282): CController->run('login')
+#2 /Users/macbook_001/projects/framework/web/CWebApplication.php(141): CWebApplication->runController('user/login')
+#3 /Users/macbook_001/projects/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#4 /Users/macbook_001/projects/project/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/project/index.php?r=user/login
+---
+2013/08/19 12:51:55 [error] [exception.CException] exception 'CException' with message 'UserController and its behaviors do not have a method or closure named "afterSignIn".' in /Users/macbook_001/projects/framework/base/CComponent.php:265
+Stack trace:
+#0 /Users/macbook_001/projects/project/protected/controllers/UserController.php(11): CComponent->__call('afterSignIn', Array)
+#1 /Users/macbook_001/projects/project/protected/controllers/UserController.php(11): UserController->afterSignIn()
+#2 /Users/macbook_001/projects/framework/web/actions/CInlineAction.php(49): UserController->actionSignIn()
+#3 /Users/macbook_001/projects/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /Users/macbook_001/projects/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#5 /Users/macbook_001/projects/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/macbook_001/projects/framework/web/CWebApplication.php(282): CController->run('signin')
+#7 /Users/macbook_001/projects/framework/web/CWebApplication.php(141): CWebApplication->runController('user/signin')
+#8 /Users/macbook_001/projects/framework/base/CApplication.php(169): CWebApplication->processRequest()
+#9 /Users/macbook_001/projects/project/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/project/index.php?r=user/signin
+HTTP_REFERER=http://localhost/project/index.php?r=user/signin
+>>>>>>> task#1001 login
 ---
