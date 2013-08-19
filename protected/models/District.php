@@ -45,17 +45,18 @@ class District extends CActiveRecord {
             array('id, id_province, id_city, district_name', 'safe', 'on' => 'search'),
         );
     }
-
     /**
      * @return array relational rules.
      */
-    public function relations() {
-        // NOTE: you may need to adjust the relation name and the related
-        // class name for the relations automatically generated below.
-        return array(
-            'users' => array(self::HAS_MANY, 'Users', 'district_id'),
-        );
+    public function relations()
+    {
+            // NOTE: you may need to adjust the relation name and the related
+            // class name for the relations automatically generated below.
+            return array(
+                    'users' => array(self::HAS_MANY, 'User', 'district_id'),
+            );
     }
+
 
     /**
      * @return array customized attribute labels (name=>label)

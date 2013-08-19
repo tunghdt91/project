@@ -1,22 +1,26 @@
 <?php
 
 /**
- * This is the model class for table "city".
+ * This is the model class for table "param".
  *
- * The followings are the available columns in table 'city':
+ * The followings are the available columns in table 'param':
  * @property integer $id
- * @property integer $id_province
- * @property string $city_name
+ * @property integer $parent
+ * @property string $param_name
+ * @property string $tipe
+ * @property string $grup
+ * @property integer $status
  *
  * The followings are the available model relations:
- * @property Users[] $users
+ * @property Data[] $datas
+ * @property Item[] $items
  */
-class City extends CActiveRecord
+class Param extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return City the static model class
+	 * @return Param the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -28,7 +32,7 @@ class City extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'city';
+		return 'param';
 	}
 
 	/**
@@ -39,12 +43,11 @@ class City extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id', 'required'),
-			array('id, id_province', 'numerical', 'integerOnly'=>true),
-			array('city_name', 'length', 'max'=>50),
+			array('parent, status', 'numerical', 'integerOnly'=>true),
+			array('param_name, tipe, grup', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, id_province, city_name', 'safe', 'on'=>'search'),
+			array('id, parent, param_name, tipe, grup, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,7 +59,10 @@ class City extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'users' => array(self::HAS_MANY, 'User', 'city_id'),
+			'datas' => array(self::HAS_MANY, 'Data', 'param_id'),
+			'items' => array(self::HAS_MANY, 'Item', 'param_id'),
+                        'children' => array(self::HAS_MANY, 'Param', 'parent'),
+                        'parent' => array(self::BELONGS_TO, 'Param', 'parent'),
 		);
 	}
 
@@ -67,8 +73,11 @@ class City extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'id_province' => 'Id Province',
-			'city_name' => 'City Name',
+			'parent' => 'Parent',
+			'param_name' => 'Param Name',
+			'tipe' => 'Tipe',
+			'grup' => 'Grup',
+			'status' => 'Status',
 		);
 	}
 
@@ -84,12 +93,14 @@ class City extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('id_province',$this->id_province);
-		$criteria->compare('city_name',$this->city_name,true);
+		$criteria->compare('parent',$this->parent);
+		$criteria->compare('param_name',$this->param_name,true);
+		$criteria->compare('tipe',$this->tipe,true);
+		$criteria->compare('grup',$this->grup,true);
+		$criteria->compare('status',$this->status);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
 }
-?>
