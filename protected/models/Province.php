@@ -27,6 +27,17 @@ class Province extends CActiveRecord {
     public function tableName() {
         return 'province';
     }
+	/**
+	 * @return array relational rules.
+	 */
+	public function relations()
+	{
+		// NOTE: you may need to adjust the relation name and the related
+		// class name for the relations automatically generated below.
+		return array(
+			'users' => array(self::HAS_MANY, 'User', 'province_id'),
+		);
+	}
 
     /**
      * @return array validation rules for model attributes.
@@ -40,17 +51,6 @@ class Province extends CActiveRecord {
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, province_name', 'safe', 'on' => 'search'),
-        );
-    }
-
-    /**
-     * @return array relational rules.
-     */
-    public function relations() {
-        // NOTE: you may need to adjust the relation name and the related
-        // class name for the relations automatically generated below.
-        return array(
-            'users' => array(self::HAS_MANY, 'Users', 'province_id'),
         );
     }
 
