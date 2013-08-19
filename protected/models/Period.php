@@ -58,6 +58,8 @@ class Period extends CActiveRecord
 		return array(
 			'datas' => array(self::HAS_MANY, 'Data', 'period_id'),
 			'items' => array(self::HAS_MANY, 'Item', 'period_id'),
+                        'children' => array(self::HAS_MANY, 'Period', 'parent'),
+                        'parent' => array(self::BELONGS_TO, 'Period', 'parent'),
 		);
 	}
 

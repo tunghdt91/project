@@ -149,3 +149,7 @@ li {
 .well a:hover {
     color: red;
 }
+
+.errorSummary ul li{
+    color: red;
+}
