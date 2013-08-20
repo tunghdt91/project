@@ -32,7 +32,7 @@
                         array(
                             'class' => 'bootstrap.widgets.TbMenu',
                             'items' => array(
-                                array('label' => 'Home', 'icon' => 'home white', 'url' => array('/home/index')),
+                                array('label' => 'Home', 'icon' => 'home white', 'url' => array('/site/index')),
                                 array('label' => 'Contact', 'url' => array('/site/contact'), 'icon' => 'envelope white'),
                                 array('label' => 'Introduction', 'url' => array('/home/contact'), 'icon' => 'qrcode white'),
                             )
