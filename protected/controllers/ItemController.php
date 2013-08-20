@@ -26,12 +26,59 @@ class ItemController extends Controller
         ));
     }
     
-    public function actionNewItemData($id)
+    public function actionView($id)
+    {
+        $item = $this->loadModel($id);
+        $dataProvider = new CActiveDataProvider(
+            'Item',
+            array('criteria' => array(
+                'condition' => "parent_id = $id",
+            ))
+        );
+        
+        $this->render(
+            'view', 
+            array(
+                'item' => $item,
+                'dataProvider' => $dataProvider,
+            )
+        );
+    }
+
+
+    public function actionNewDataItem($id)
     {
         $item = $this->loadModel($id);
         $params = $item->param()->children();
+        if(sizeof($_POST) != 0) {
+            $datas = $_POST[$item->id];
+            foreach ($datas as $key => $value) {
+                $save = false;
+                $dt = new Data;
+                $dt->item_id = $item->id;
+                $dt->param_id = $key;
+                $dt->period_id = $item->period_id;
+                foreach ($value as $key1 => $value1) {
+                    $t = "value{$key1}";
+                    if ($value1 != "") {
+                        $dt->$t = $value1;
+                        $save = true;
+                    } else {
+                        $dt->$t = NULL;
+                    }
+                }
+                $dt->dttm_input = date('Y-m-d H:i:s', time());
+                $dt->user_input = $this->current_user->id;
+                $dt->status = 2;
+                if ($save) {
+                    if ($dt->save()) {
+                        $this->redirect(array('/item/newdataitem', 'id' => $id));
+                    }
+                }
+            }
+        }
         $this->render(
-            'new_data',
+            'newdataitem',
             array(
                 'item' => $item,
                 'params' => $params,
