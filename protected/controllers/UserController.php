@@ -58,16 +58,31 @@ class UserController extends Controller
         }
         public function actionCreate() {
             $user = new User;
+            $hobbies = Lookup::model()->findAll();
+            
             if(isset($_POST['User']) ) {
+                $tmp = '';
+                foreach ($hobbies as $hobby) {
+                    if(isset($_POST['hobby'][$hobby->id])) {
+                        $tmp .= $_POST['hobby'][$hobby->id];
+                    }
+  
+                }
                 $user->attributes = $_POST['User'];
+                $user->hobby = $tmp;
+                if (!empty($_POST['User']['birthday'])) {
+                    $user->birthday = DateTime::createFromFormat('d-m-Y', $_POST['User']['birthday'])->format('Y-m-d');
+                }
                 $user->password = md5($_POST['User']['password']);
                 if ($user->save()) {
                   Yii::app()->user->setFlash('success', 'Thank you ! Register Account Complete .');
                   $this->redirect(array('user/index'));
                 }
             }
+            
             $this->render('create', array(
                 'user' => $user,
+                'hobbies' => $hobbies,
             ));
             
         }

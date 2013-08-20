@@ -52,7 +52,7 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class="row">
         <div class="span2 offset1">Birth day:<span class="required">*</span></div>
         <div class="datetimepicker4" class="input-append span7">
-            <input data-format="dd-MM-yyyy" type="text" name="User[birth_day]" placeholder = 'dd-MM-yyyy'></input>
+            <input data-format="dd-MM-yyyy" type="text" name="User[birthday]" placeholder = 'dd-MM-yyyy'></input>
             <span class="add-on">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                 </i>
@@ -108,30 +108,19 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class="row">
         <div class="span2 offset1">Hobby</div>
         <div class="span5">
-            <div class="row">
-                <div class="span3">
-                    <input type="checkbox" name="hobby[0]" value="estado"  />
-                </div>
-                <div class="span3">
-                    Basket Ball
-                </div>
-            </div>
-            <div class="row">
-                <div class="span3">
-                    <input type="checkbox" name="hobby[1]" value="estado"  />
-                </div>
-                <div class="span3">
-                    Football
-                </div>
-            </div>
-            <div class="row">
-                <div class="span3">
-                    <input type="checkbox" name="hobby[2]" value="estado"  />
-                </div>
-                <div class="span3">
-                    Tenis
-                </div>
-            </div>
+            <?php 
+                foreach ($hobbies as $hobby) {
+                    echo "<div class='row'>";
+                        echo "<div class='span3'>";
+                        echo "<input type='checkbox' name= hobby[$hobby->id] value= $hobby->code >";
+                        echo "</div>";
+                        
+                        echo "<div class='span3'>";
+                        echo $hobby->name;
+                        echo "</div>";
+                    echo "</div>";
+                }
+            ?>
         </div>
 
     </div>
