@@ -3,7 +3,7 @@
 class RequireLogin extends CBehavior
 {
 
-    public $allowed = array('site/index', 'user/signin', 'user/forgetPassword', 'user/resetPassword', 'user/signout');
+    public $allowed = array('site/index', 'site/contact','site/about', 'user/signin', 'user/forgetPassword', 'user/resetPassword', 'user/signout');
 
     public function attach($owner)
     {
