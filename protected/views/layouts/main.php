@@ -33,7 +33,7 @@
                             'class' => 'bootstrap.widgets.TbMenu',
                             'items' => array(
                                 array('label' => 'Home', 'icon' => 'home white', 'url' => array('/home/index')),
-                                array('label' => 'Contact', 'url' => array('/home/contact'), 'icon' => 'envelope white'),
+                                array('label' => 'Contact', 'url' => array('/site/contact'), 'icon' => 'envelope white'),
                                 array('label' => 'Introduction', 'url' => array('/home/contact'), 'icon' => 'qrcode white'),
                             )
                         ),
@@ -68,10 +68,9 @@
                     <?php $this->widget('bootstrap.widgets.TbMenu', array(
     'type'=>'list',
     'items'=>array(
-        array('label'=>'LIST HEADER'),
-        array('label'=>'Home', 'icon'=>'home', 'url'=>'#', 'active'=>true),
-        array('label'=>'Library', 'icon'=>'book', 'url'=>'#'),
-        array('label'=>'Application', 'icon'=>'pencil', 'url'=>'#'),
+        array('label'=>'ITEM'),
+        array('label'=>'New Item', 'icon'=>'book', 'url'=>array('/item/create')),
+        array('label'=>'All Item', 'icon'=>'pencil', 'url'=>'/item/index'),
         array('label'=>'ANOTHER LIST HEADER'),
         array('label'=>'Profile', 'icon'=>'user', 'url'=>'#'),
         array('label'=>'Settings', 'icon'=>'cog', 'url'=>'#'),
