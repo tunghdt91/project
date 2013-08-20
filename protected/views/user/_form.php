@@ -76,7 +76,7 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php
         $provinces = Province::model()->findAll();
         $listData_province = CHtml::listData($provinces, 'id', 'province_name');
-        echo CHtml::dropDownList('tinh_2', '', 
+        echo CHtml::dropDownList('User[province_id]', '', 
             array('none' => 'Select') + $listData_province,
             array(
                 'id' => 'select_province'
@@ -87,7 +87,7 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class="row">
         <div class="span2 offset1">City</div>
         <?php
-        echo CHtml::dropDownList('tinh_2', '', 
+        echo CHtml::dropDownList('User[city_id]', '', 
             array('none' => 'Select'), 
             array(
                 'id' => 'select_city',
@@ -100,7 +100,7 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class="row">
         <div class="span2 offset1">District</div>
         <?php
-        echo CHtml::dropDownList('tinh_2', '', 
+        echo CHtml::dropDownList('User[district_id]', '', 
             array('none' => 'Select'), 
             array(
                 'id' => 'select_district',
