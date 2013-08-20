@@ -29,6 +29,25 @@ class ItemController extends Controller
         }
         return $model;
     }
+    
+    public function actionCreate() {
+        $item = new Item;
+        $periods = Period::model()->findAll();
+        $params = Param::model()->findAll();
+        
+        if(isset($_POST['Item'])) {
+            $item->attributes = $_POST['Item'];
+            if($item->save()) {
+                Yii::app()->user->setFlash('success', 'Thank you ! Register Account Complete .');
+                $this->redirect('index');
+            }
+        }
+        $this->render('create', array(
+            'item' => $item,
+            'periods' => $periods,
+            'params' => $params,
+        ));
+    }
 }
 
 ?>
