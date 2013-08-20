@@ -1,5 +1,6 @@
 <script src='<?php echo Yii::app()->baseUrl; ?>/js/bootstrap-datetimepicker.min.js'></script>
 <script src='<?php echo Yii::app()->baseUrl; ?>/js/user.js'></script>
+<script src='<?php echo Yii::app()->baseUrl; ?>/js/signin.js'></script>
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/css/bootstrap-datetimepicker.min.css'); ?>
 <script type="text/javascript">
     $(function() {
@@ -75,25 +76,37 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php
         $provinces = Province::model()->findAll();
         $listData_province = CHtml::listData($provinces, 'id', 'province_name');
-        echo CHtml::dropDownList('tinh_2', '', $listData_province, array('id' => 'chon_tinh_2'));
+        echo CHtml::dropDownList('tinh_2', '', 
+            array('none' => 'Select') + $listData_province,
+            array(
+                'id' => 'select_province'
+            ));
         ?>
 
     </div>
     <div class="row">
         <div class="span2 offset1">City</div>
         <?php
-        $cities = City::model()->findAll();
-        $listData_city = CHtml::listData($cities, 'id', 'city_name');
-        echo CHtml::dropDownList('tinh_2', '', $listData_city, array('id' => 'chon_tinh_2'));
+        echo CHtml::dropDownList('tinh_2', '', 
+            array('none' => 'Select'), 
+            array(
+                'id' => 'select_city',
+                'disabled' => true,
+            )
+        );
         ?>
 
     </div>
     <div class="row">
         <div class="span2 offset1">District</div>
         <?php
-        $districts = District::model()->findAll();
-        $listData_district = CHtml::listData($districts, 'id', 'district_name');
-        echo CHtml::dropDownList('tinh_2', '', $listData_district, array('id' => 'chon_tinh_2'));
+        echo CHtml::dropDownList('tinh_2', '', 
+            array('none' => 'Select'), 
+            array(
+                'id' => 'select_district',
+                'disabled' => true,
+            )
+        );
         ?>
 
     </div>

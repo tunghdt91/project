@@ -22,14 +22,13 @@ class UserController extends Controller
         /*@author Mr_Khoai
          */
         public function actionDataSignin() {
-            if (!Yii::app()->request->isAjaxRequest) {
-                $this->render('/site/error', array(
-                    'code' => 403,
-                    'message' => 'Forbidden',
-                ));
-                Yii::app()->end();
-            }
-            
+           if (!Yii::app()->request->isAjaxRequest) {
+            $this->render('/site/error', array(
+                'code' => 403,
+                'message' => 'Forbidden',
+            ));
+            Yii::app()->end();
+           }
            if (isset($_POST['value'])) {
             $results = array();
             $criteria = new CDbCriteria();
@@ -41,7 +40,47 @@ class UserController extends Controller
             echo json_encode($results);
            }
         }
+        /*@author Mr_Khoai
+         */
+        public function actionDataCity() {
+            if(!Yii::app()->request->isAjaxRequest) {
+                $this->render('/site/error', array(
+                    'code' => 403,
+                    'message' => 'Forbidden',
+                ));
+                Yii::app()->end();
+            }          
+            if(isset($_POST['value'])) {
+                $results = array();
+                $criteria = new CDbCriteria();
+                $criteria->condition = "id_province = ({$_POST['value']})";
+                $kqs = City::model()->findAll($criteria);
+                foreach ($kqs as $kq) {
+                     $results[$kq->id] = $kq->city_name;
+                }
+                echo json_encode($results);
+            }
+        }
         
+        public function actionDataDistrict() {
+            if(!Yii::app()->request->isAjaxRequest) {
+                $this->render('/site/error', array(
+                    'code' => 403,
+                    'message' => 'Forbidden',
+                ));
+                Yii::app()->end();
+            }          
+            if(isset($_POST['value'])) {
+                $results = array();
+                $criteria = new CDbCriteria();
+                $criteria->condition = "id_city = ({$_POST['value']})";
+                $kqs = District::model()->findAll($criteria);
+                foreach ($kqs as $kq) {
+                     $results[$kq->id] = $kq->district_name;
+                }
+                echo json_encode($results);
+            }
+        }
         /*@author Mr_Khoai
          */
 	public function actionSignout()
