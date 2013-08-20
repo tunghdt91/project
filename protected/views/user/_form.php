@@ -1,4 +1,5 @@
 <script src='<?php echo Yii::app()->baseUrl; ?>/js/bootstrap-datetimepicker.min.js'></script>
+<script src='<?php echo Yii::app()->baseUrl; ?>/js/user.js'></script>
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/css/bootstrap-datetimepicker.min.css'); ?>
 <script type="text/javascript">
     $(function() {
@@ -20,36 +21,36 @@ $form = $this->beginWidget('CActiveForm', array(
 <?php echo $form->errorSummary($user); ?>
 <div class="user_form">
     <div class="row">
-        <div class="span3 offset1">Name :</div>
+        <div class="span2 offset1">Name :</div>
         <?php
         echo $form->textField($user, 'name', array(
-            'class' => 'text input span6',
+            'class' => 'text input span3',
             'placeholder' => 'Enter your Name',
         ));
         ?>
     </div>
     <div class="row">
-        <div class="span3 offset1">User Name :(<span class="required">*</span>)</div>
+        <div class="span2 offset1">User Name :(<span class="required">*</span>)</div>
         <?php
         echo $form->textField($user, 'username', array(
-            'class' => 'text input span5',
+            'class' => 'text input span3',
             'placeholder' => 'Enter your user name',
         ));
         ?>
     </div>
 
     <div class="row">
-        <div class="span3 offset1">Password :(<span class="required">*</span>)</div>
+        <div class="span2 offset1">Password :(<span class="required">*</span>)</div>
         <?php
         echo $form->passwordField($user, 'password', array(
-            'class' => 'text input span6',
+            'class' => 'text input span3',
             'placeholder' => 'Enter your password'
         ));
         ?>
     </div>
 
     <div class="row">
-        <div class="span3 offset1">Birth day:<span class="required">*</span></div>
+        <div class="span2 offset1">Birth day:<span class="required">*</span></div>
         <div class="datetimepicker4" class="input-append span7">
             <input data-format="dd-MM-yyyy" type="text" name="User[birth_day]" placeholder = 'dd-MM-yyyy'></input>
             <span class="add-on">
@@ -59,7 +60,7 @@ $form = $this->beginWidget('CActiveForm', array(
         </div>
     </div>
     <div class="row">
-        <div class="span3 offset1">Gender</div>
+        <div class="span2 offset1">Gender</div>
         <div class="span7">
             <?php
             echo $form->radioButtonList($user, 'gender', array('m' => 'Male', 'f' => 'Female'), array('separator' => '&nbsp; &nbsp;',
@@ -70,7 +71,7 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
 
     <div class="row">
-        <div class="span3 offset1">Province</div>
+        <div class="span2 offset1">Province</div>
         <?php
         $provinces = Province::model()->findAll();
         $listData_province = CHtml::listData($provinces, 'id', 'province_name');
@@ -79,7 +80,7 @@ $form = $this->beginWidget('CActiveForm', array(
 
     </div>
     <div class="row">
-        <div class="span3 offset1">City</div>
+        <div class="span2 offset1">City</div>
         <?php
         $cities = City::model()->findAll();
         $listData_city = CHtml::listData($cities, 'id', 'city_name');
@@ -88,7 +89,7 @@ $form = $this->beginWidget('CActiveForm', array(
 
     </div>
     <div class="row">
-        <div class="span3 offset1">District</div>
+        <div class="span2 offset1">District</div>
         <?php
         $districts = District::model()->findAll();
         $listData_district = CHtml::listData($districts, 'id', 'district_name');
@@ -97,16 +98,16 @@ $form = $this->beginWidget('CActiveForm', array(
 
     </div>
     <div class="row">
-        <div class="span3 offset1">Address</div>
+        <div class="span2 offset1">Address</div>
         <?php
-        echo $form->textArea($user, 'address', array('class' => 'span7', 'rows' => 5,
+        echo $form->textArea($user, 'address', array('class' => 'span4', 'rows' => 3,
             'placeholder' => 'Enter your address'));
         ?>
     </div>
 
     <div class="row">
-        <div class="span3 offset1">Hobby</div>
-        <div class="span7">
+        <div class="span2 offset1">Hobby</div>
+        <div class="span5">
             <div class="row">
                 <div class="span3">
                     <input type="checkbox" name="hobby[0]" value="estado"  />
@@ -135,12 +136,9 @@ $form = $this->beginWidget('CActiveForm', array(
 
     </div>
     <div class="clear"></div>
-    <div class="form-actions">
-        <?php
-        echo CHtml::submitButton($user->isNewRecord ? 'Create' : 'Update', array('class' => 'btn btn-info')
-        );
-        ?>
-        <?php echo CHtml::resetButton('Cancel', array('class' => 'btn')); ?>
-    </div>
+    <?php
+    echo CHtml::submitButton($user->isNewRecord ? 'Create' : 'Update', array('class' => 'btn btn-info')
+    );
+    ?>
 </div>
 <?php $this->endWidget(); ?>
