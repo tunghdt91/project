@@ -46,7 +46,7 @@
                             'items' => array(
                                 array('label' => 'Login','icon' => 'white user', 'url' => array('/user/signin'), 'visible' => Yii::app()->user->isGuest),
                                 array('label' => 'Register','icon'=>'tag white', 'url' => array('/user/create'), 'visible' => Yii::app()->user->isGuest),
-                                array('label' => Yii::app()->user->id, 'icon' => 'user', 'url' => '#', 'visible' => !Yii::app()->user->isGuest,
+                                array('label' => Yii::app()->user->id, 'icon' => 'user white', 'url' => '#', 'visible' => !Yii::app()->user->isGuest,
                                     'items' => array(
                                         array(
                                             'label' => 'Change Password',
@@ -70,7 +70,7 @@
     'items'=>array(
         array('label'=>'ITEM'),
         array('label'=>'New Item', 'icon'=>'book', 'url'=>array('/item/create')),
-        array('label'=>'All Item', 'icon'=>'pencil', 'url'=>'/item/index'),
+        array('label'=>'All Item', 'icon'=>'pencil', 'url'=>array('/item/index')),
         array('label'=>'ANOTHER LIST HEADER'),
         array('label'=>'Profile', 'icon'=>'user', 'url'=>'#'),
         array('label'=>'Settings', 'icon'=>'cog', 'url'=>'#'),
