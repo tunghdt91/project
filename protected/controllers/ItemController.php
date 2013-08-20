@@ -5,7 +5,7 @@ class ItemController extends Controller
     //put your code here
     public function actionIndex()
     {
-        die("index");
+        $this->render('index');
     }
     
     public function actionNewItemData($id)
@@ -38,8 +38,8 @@ class ItemController extends Controller
         if(isset($_POST['Item'])) {
             $item->attributes = $_POST['Item'];
             if($item->save()) {
-                Yii::app()->user->setFlash('success', 'Thank you ! Register Account Complete .');
-                $this->redirect('index');
+                Yii::app()->user->setFlash('success', 'Create item complete .');
+                $this->redirect(array('/item/index'));
             }
         }
         $this->render('create', array(

@@ -129,4 +129,31 @@ class UserController extends Controller
         public function actionIndex() {
             $this->render('index');
         }
+        
+        public function actionChangepassword(){
+        if (Yii::app()->user->isGuest) {
+            $this->redirect(Yii::app()->createUrl('user/signin'));
+            exit;
+        }
+        $form = new ChangePassword;
+        if (isset($_POST['ChangePassword'])) {
+            $form->attributes = $_POST['ChangePassword'];
+            if ($form->validate()) {
+                $criteria = new CDbCriteria;
+                $criteria->condition = "username='".Yii::app()->user->id."'";
+                $user = User::model()->find($criteria);
+                if (!$user->isValiPassword($form->oldPassword)) {
+                    $form->addError('oldPassword', 'Current password wrong!.');
+                } else {
+                    $user->password = $user->encryptPassword($form->newPassword);
+                    $user->save();
+                    $this->redirect(Yii::app()->homeUrl);
+                }
+            }
+        }
+        $this->render('changepassword', array(
+            'form' => $form
+            )
+        );
+    }
 }
