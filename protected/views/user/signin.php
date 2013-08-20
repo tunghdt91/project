@@ -20,6 +20,7 @@ $this->widget('bootstrap.widgets.TbAlert');
                 'placeholder' => 'Password')); ?>
         </div>
         <div class="row">
+            <div class="span2 offset1">Year</div>
              <?php
                 echo CHtml::dropDownList('', '', 
                     array('none' => 'Select') + array('2013'=>'2013', '2014'=>'2014') ,
@@ -30,6 +31,7 @@ $this->widget('bootstrap.widgets.TbAlert');
              ?>
         </div>
         <div class="row">
+            <div class="span2 offset1">Period</div>
                 <?php
                 $data = Period::model()->findAllByAttributes(array('parent'=>0));
                 $list = CHtml::listData($data, 'id', 'period_name');
