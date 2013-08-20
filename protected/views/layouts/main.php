@@ -34,7 +34,7 @@
                             'items' => array(
                                 array('label' => 'Home', 'icon' => 'home white', 'url' => array('/site/index')),
                                 array('label' => 'Contact', 'url' => array('/site/contact'), 'icon' => 'envelope white'),
-                                array('label' => 'Introduction', 'url' => array('/home/contact'), 'icon' => 'qrcode white'),
+                                array('label' => 'Introduction', 'url' => array('/site/about'), 'icon' => 'qrcode white'),
                             )
                         ),
                         '<form class="navbar-search" action=""><input type="text"
