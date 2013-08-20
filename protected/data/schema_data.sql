@@ -228,3 +228,21 @@ ALTER TABLE `users`
   ADD CONSTRAINT `fk_users_city1` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_users_district1` FOREIGN KEY (`district_id`) REFERENCES `district` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_users_province1` FOREIGN KEY (`province_id`) REFERENCES `province` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+CREATE TABLE IF NOT EXISTS `lookup` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`name` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+`code` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+`type` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+`position` int(11) NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=70 ;
+
+--
+-- Dumping data for table `lookup`
+--
+
+INSERT INTO `lookup` (`id`, `name`, `code`, `type`, `position`) VALUES
+(1, 'Basket ball', '0', 'hobby', 1),
+(68, 'Tenis', '1', 'hobby', 2),
+(69, 'Football', '2', 'hobby', 3);

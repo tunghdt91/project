@@ -21,13 +21,13 @@
                 echo "</td>";
 
                 echo "<td>";
-                echo CHtml::textField('abc');
+                echo CHtml::textField("{$item->id}[{$param->id}][1]");
                 echo "</td>";
                 echo "<td>";
-                echo CHtml::textField('abc');
+                echo CHtml::textField("{$item->id}[{$param->id}][2]");
                 echo "</td>";
                 echo "<td>";
-                echo CHtml::textField('abc');
+                echo CHtml::textField("{$item->id}[{$param->id}][3]");
                 echo "</td>";
             echo "</tr>";
         }
@@ -37,7 +37,15 @@
 <div class="row buttons">
     <?php 
         echo CHtml::submitButton('Save', array('class' => 'btn btn-primary'));
-        echo CHtml::submitButton('Cancel', array('class' => 'btn btn-primary'));
+        echo CHtml::submitButton(
+            'Cancel',
+            array(
+                'class' => 'btn btn-primary',
+                'submit' => array(
+                    'item/index',
+                )
+            )
+        );
     ?>
 </div>
 
