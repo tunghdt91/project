@@ -69,12 +69,12 @@
     'type'=>'list',
     'items'=>array(
         array('label'=>'ITEM'),
-        array('label'=>'New Item', 'icon'=>'book', 'url'=>array('/item/create')),
-        array('label'=>'All Item', 'icon'=>'pencil', 'url'=>array('/item/index')),
+        array('label'=>'New Item', 'icon'=>'pencil', 'url'=>array('/item/create')),
+        array('label'=>'All Item', 'icon'=>'book', 'url'=>array('/item/index')),
         array('label'=>'ANOTHER LIST HEADER'),
-        array('label'=>'Profile', 'icon'=>'user', 'url'=>'#'),
-        array('label'=>'Settings', 'icon'=>'cog', 'url'=>'#'),
-        array('label'=>'Help', 'icon'=>'flag', 'url'=>'#'),
+        array('label'=>'link1', 'icon'=>'user', 'url'=>'#'),
+        array('label'=>'link2', 'icon'=>'cog', 'url'=>'#'),
+        array('label'=>'link2', 'icon'=>'flag', 'url'=>'#'),
     ),
 )); ?>
                 </div>
