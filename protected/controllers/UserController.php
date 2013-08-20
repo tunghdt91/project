@@ -86,7 +86,7 @@ class UserController extends Controller
 	public function actionSignout()
         {
             Yii::app()->user->logout();
-            Yii::app()->request->redirect($this->createUrl('home/index'));
+            Yii::app()->request->redirect($this->createUrl('site/index'));
         }
         
         public function loadModel($id) {

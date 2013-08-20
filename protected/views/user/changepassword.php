@@ -21,6 +21,6 @@ $this->widget('bootstrap.widgets.TbAlert');
                 'placeholder' => 'Confirm new password')); ?>
         </div>
         <div style="height:20px"></div>
-        <div class="row"><?php echo CHtml::submitButton('Đổi mật khẩu', array('class' => 'offset5 btn btn-primary')); ?></div>
+        <div class="row"><?php echo CHtml::submitButton('Change password', array('class' => 'offset5 btn btn-primary')); ?></div>
     </form>
 </div>
