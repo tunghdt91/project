@@ -46,7 +46,12 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'dataProvider'=>$dataProvider,
     'columns' => array(
         'id',
-        'item_name',
+        array(
+            'class'=>'CLinkColumn',
+            'header'=>'item_name',
+            'labelExpression'=>'$data->item_name' ,
+            'urlExpression'=>'Yii::app()->createUrl("item/view",array("id"=>$data->id))',
+        ),
          array(
             'name'=>'period_id',
             'value'=>'$data->period->period_name',

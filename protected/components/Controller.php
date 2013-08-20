@@ -20,4 +20,28 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
+    
+    /**
+     *
+     * @var User current logging in user
+     */
+    public $current_user;
+
+    /**
+     * If user logged in then get all recent activities detail and add to stream array
+     * @param string $action     
+     * @author Pham Tri Thai
+     */   
+    public function beforeAction($action)
+    {
+        if (!Yii::app()->user->isGuest) {
+
+            if (!isset(Yii::app()->session['current_user'])) {
+                // broken state
+                Yii::app()->session['current_user'] = User::model()->findByPk(Yii::app()->user->id);
+            }
+            $this->current_user = clone Yii::app()->session['current_user'];
+        }
+        return parent::beforeAction($action);
+    }
 }
