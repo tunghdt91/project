@@ -39,7 +39,7 @@ class ItemController extends Controller
     public function actionCreate() {
         $item = new Item;
         $criteria = new CDbCriteria;
-        $criteria->addCondition('parent=:parent');
+        $criteria->addCondition('parent!=:parent');
         $criteria->params = array(':parent' => 0);
         $periods = Period::model()->findAll($criteria);
         $params = Param::model()->findAll($criteria);
