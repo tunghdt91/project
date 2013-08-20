@@ -4,5 +4,6 @@
 <?php $this->widget('bootstrap.widgets.TbAlert'); ?>
     <?php echo $this->renderPartial('_form', array(
         'user' => $user,
+        'hobbies' => $hobbies,
         )
      ); ?>

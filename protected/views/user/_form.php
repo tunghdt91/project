@@ -1,5 +1,6 @@
 <script src='<?php echo Yii::app()->baseUrl; ?>/js/bootstrap-datetimepicker.min.js'></script>
 <script src='<?php echo Yii::app()->baseUrl; ?>/js/user.js'></script>
+<script src='<?php echo Yii::app()->baseUrl; ?>/js/signin.js'></script>
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/css/bootstrap-datetimepicker.min.css'); ?>
 <script type="text/javascript">
     $(function() {
@@ -52,7 +53,7 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class="row">
         <div class="span2 offset1">Birth day:<span class="required">*</span></div>
         <div class="datetimepicker4" class="input-append span7">
-            <input data-format="dd-MM-yyyy" type="text" name="User[birth_day]" placeholder = 'dd-MM-yyyy'></input>
+            <input data-format="dd-MM-yyyy" type="text" name="User[birthday]" placeholder = 'dd-MM-yyyy'></input>
             <span class="add-on">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                 </i>
@@ -75,25 +76,37 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php
         $provinces = Province::model()->findAll();
         $listData_province = CHtml::listData($provinces, 'id', 'province_name');
-        echo CHtml::dropDownList('tinh_2', '', $listData_province, array('id' => 'chon_tinh_2'));
+        echo CHtml::dropDownList('tinh_2', '', 
+            array('none' => 'Select') + $listData_province,
+            array(
+                'id' => 'select_province'
+            ));
         ?>
 
     </div>
     <div class="row">
         <div class="span2 offset1">City</div>
         <?php
-        $cities = City::model()->findAll();
-        $listData_city = CHtml::listData($cities, 'id', 'city_name');
-        echo CHtml::dropDownList('tinh_2', '', $listData_city, array('id' => 'chon_tinh_2'));
+        echo CHtml::dropDownList('tinh_2', '', 
+            array('none' => 'Select'), 
+            array(
+                'id' => 'select_city',
+                'disabled' => true,
+            )
+        );
         ?>
 
     </div>
     <div class="row">
         <div class="span2 offset1">District</div>
         <?php
-        $districts = District::model()->findAll();
-        $listData_district = CHtml::listData($districts, 'id', 'district_name');
-        echo CHtml::dropDownList('tinh_2', '', $listData_district, array('id' => 'chon_tinh_2'));
+        echo CHtml::dropDownList('tinh_2', '', 
+            array('none' => 'Select'), 
+            array(
+                'id' => 'select_district',
+                'disabled' => true,
+            )
+        );
         ?>
 
     </div>
@@ -108,30 +121,19 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class="row">
         <div class="span2 offset1">Hobby</div>
         <div class="span5">
-            <div class="row">
-                <div class="span3">
-                    <input type="checkbox" name="hobby[0]" value="estado"  />
-                </div>
-                <div class="span3">
-                    Basket Ball
-                </div>
-            </div>
-            <div class="row">
-                <div class="span3">
-                    <input type="checkbox" name="hobby[1]" value="estado"  />
-                </div>
-                <div class="span3">
-                    Football
-                </div>
-            </div>
-            <div class="row">
-                <div class="span3">
-                    <input type="checkbox" name="hobby[2]" value="estado"  />
-                </div>
-                <div class="span3">
-                    Tenis
-                </div>
-            </div>
+            <?php 
+                foreach ($hobbies as $hobby) {
+                    echo "<div class='row'>";
+                        echo "<div class='span3'>";
+                        echo "<input type='checkbox' name= hobby[$hobby->id] value= $hobby->code >";
+                        echo "</div>";
+                        
+                        echo "<div class='span3'>";
+                        echo $hobby->name;
+                        echo "</div>";
+                    echo "</div>";
+                }
+            ?>
         </div>
 
     </div>
