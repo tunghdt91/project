@@ -52,7 +52,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'value'=>'$data->period->period_name',
         ),
         array(
-            'name'=>'period_id',
+            'name'=>'param_id',
             'value'=>'$data->param->param_name',
         ),
     )));
