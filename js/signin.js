@@ -29,6 +29,16 @@ $(
                 $('#select_district').attr('disabled', 'true');
             }
         });
+        
+        $('#show_search').click(function() {
+            if ($('#form_search').is(':hidden')) {
+                $('#form_search').show(500);
+                $(this).val('Hide Search');
+            } else {
+                $('#form_search').hide(500);
+                $(this).val('Show Search');
+            }
+        });
 });
 
 function load_data_district(value) {
