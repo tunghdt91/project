@@ -9,14 +9,17 @@ $this->widget('bootstrap.widgets.TbAlert');
     <form method='post'>
         <?php echo CHtml::errorSummary($form); ?>
         <div class="row">
-            <?php echo CHtml::activeTextField($form, 'username', array('class' => 'span5 offset3', 
+            <div class="span2 offset1">User Name (<span class="required">*</span>)</div>
+            <?php echo CHtml::activeTextField($form, 'username', array('class' => 'span3', 
                 'placeholder' => 'Username', 'autofocus' => 'autofocus')); ?>
         </div>
         <div class="row">
-            <?php echo CHtml::activePasswordField($form, 'password', array('class' => 'span5 offset3', 
+            <div class="span2 offset1"> Password (<span class="required">*</span>)</div>
+            <?php echo CHtml::activePasswordField($form, 'password', array('class' => 'span3', 
                 'placeholder' => 'Password')); ?>
         </div>
         <div class="row">
+            <div class="span2 offset1">Year</div>
             <?php
                 echo CHtml::dropDownList('', '', 
                     array('none' => 'Select', '2013' => '2013', '2014' => '2014'),
@@ -25,6 +28,7 @@ $this->widget('bootstrap.widgets.TbAlert');
             ?>
         </div>
         <div class="row">
+            <div class='span2 offset1'>Period</div>
             <?php
                 echo CHtml::dropDownList('', '', 
                     array('none' => 'Select', 'Quartal' => 'Quartal', 'Semeter' => 'Semeter'),
@@ -51,6 +55,6 @@ $this->widget('bootstrap.widgets.TbAlert');
         </div>
         <div style="height:20px"></div>
 
-        <div class="row"><?php echo CHtml::submitButton('Login', array('class' => 'span3 offset5 btn btn-primary')); ?></div>
+        <div class="row"><?php echo CHtml::submitButton('Login', array('class' => 'span2 offset3  btn btn-primary')); ?></div>
     </form>
 </div>

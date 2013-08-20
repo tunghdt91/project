@@ -24,27 +24,28 @@
             <div id="mainmenu">
                 <?php
                 $this->widget('bootstrap.widgets.TbNavbar', array(
+                    'type' => 'inverse',
                     'collapse' => true,
-                    'brand' => 'Your Site',
+                    'brand' => 'CRUD Yii framwork',
                     'brandUrl' => '#',
                     'items' => array(
                         array(
                             'class' => 'bootstrap.widgets.TbMenu',
                             'items' => array(
-                                array('label' => 'Home', 'icon' => 'home', 'url' => array('/home/index')),
-                                array('label' => 'Contact', 'url' => 'forum', 'icon' => 'envelope'),
-                                array('label' => 'Introduction', 'url' => array('/home/contact'), 'icon' => 'globe'),
+                                array('label' => 'Home', 'icon' => 'home white', 'url' => array('/home/index')),
+                                array('label' => 'Contact', 'url' => array('/home/contact'), 'icon' => 'envelope white'),
+                                array('label' => 'Introduction', 'url' => array('/home/contact'), 'icon' => 'qrcode white'),
                             )
                         ),
-                         '<form class="navbar-search" action=""><input type="text"
+                        '<form class="navbar-search" action=""><input type="text"
                              class="search-query" placeholder="Search in site" id="search" >
-                            </form>',   
+                            </form>',
                         array(
                             'class' => 'bootstrap.widgets.TbMenu',
-                            'htmlOptions' => array('class' => 'pull-right2'),
+                            'htmlOptions' => array('class' => 'pull-right'),
                             'items' => array(
-                                array('label' => 'Login', 'url' => array('/user/signin'), 'visible' => Yii::app()->user->isGuest),
-                                array('label' => 'Register', 'url' => array('/user/create'), 'visible' => Yii::app()->user->isGuest),
+                                array('label' => 'Login','icon' => 'white user', 'url' => array('/user/signin'), 'visible' => Yii::app()->user->isGuest),
+                                array('label' => 'Register','icon'=>'tag white', 'url' => array('/user/create'), 'visible' => Yii::app()->user->isGuest),
                                 array('label' => Yii::app()->user->id, 'icon' => 'user', 'url' => '#', 'visible' => !Yii::app()->user->isGuest,
                                     'items' => array(
                                         array(
@@ -62,23 +63,32 @@
                 ));
                 ?>
             </div><!-- mainmenu -->
-                <div id="all-content">
+            <div id="all-content">
                 <div id="slide-bar">
-                    <ul class="nav nav-tabs nav-stacked"><li class="disabled" style="background: #CCFF66; font-weight: bold; color: orange;"><a href="#">Danh mục quản lý</a></li></ul>
-                    <div class="well-small well tcbm"><a><i class="icon-chevron-right"></i>Tổ Chức Bộ Máy</a></div>
-                    
-                    <div class="well-small well dvd"><a><i class="icon-chevron-right"></i>Đơn vị đoàn</a></div>
+                    <?php $this->widget('bootstrap.widgets.TbMenu', array(
+    'type'=>'list',
+    'items'=>array(
+        array('label'=>'LIST HEADER'),
+        array('label'=>'Home', 'icon'=>'home', 'url'=>'#', 'active'=>true),
+        array('label'=>'Library', 'icon'=>'book', 'url'=>'#'),
+        array('label'=>'Application', 'icon'=>'pencil', 'url'=>'#'),
+        array('label'=>'ANOTHER LIST HEADER'),
+        array('label'=>'Profile', 'icon'=>'user', 'url'=>'#'),
+        array('label'=>'Settings', 'icon'=>'cog', 'url'=>'#'),
+        array('label'=>'Help', 'icon'=>'flag', 'url'=>'#'),
+    ),
+)); ?>
                 </div>
-            <?php echo $content; ?>
-            <div class="clear"></div>
+                <?php echo $content; ?>
+                <div class="clear"></div>
 
-            <div id="footer">
-                Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-                All Rights Reserved.<br/>
-                <?php echo Yii::powered(); ?>
-            </div><!-- footer -->
+                <div id="footer">
+                    Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
+                    All Rights Reserved.<br/>
+                    <?php echo Yii::powered(); ?>
+                </div><!-- footer -->
 
-        </div><!-- page -->
+            </div><!-- page -->
 
     </body>
 </html>

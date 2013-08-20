@@ -46,7 +46,8 @@ clear: both;
 .navbar-inner {
     width: 80%;
     margin:0 auto;
-    background-image: linear-gradient(to bottom, white, white);
+     background: #3B5998;
+    border: 1px solid #3B5998;
 }
 
 .all-content {
@@ -123,20 +124,6 @@ li {
     width: 58%;
 }
 
-.ban {
-    display: none;
-}
-
-.qldv_2 {
-    display: none;
-}
-.dvd_2 {
-    display: none;
-}
-
-.qlht_2 {
-    display: none;
-}
 
 .tree li {
     font-size: 12px;
@@ -150,6 +137,11 @@ li {
     color: red;
 }
 
-.errorSummary ul li{
-    color: red;
+div.errorSummary {
+border: 2px solid #C00;
+padding: 7px 7px 12px 7px;
+background: #FEE;
+font-size: 0.9em;
+width: 60%;
+margin: 0px auto;
 }
