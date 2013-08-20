@@ -97,7 +97,9 @@ class UserController extends Controller
         }
         public function actionCreate() {
             $user = new User;
-            $hobbies = Lookup::model()->findAll();
+            $criteria = new CDbCriteria;
+            $criteria->condition="type LIKE 'hobby' ORDER BY code ASC";
+            $hobbies = Lookup::model()->findAll($criteria);
             
             if(isset($_POST['User']) ) {
                 $tmp = '';
