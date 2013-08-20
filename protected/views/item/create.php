@@ -11,7 +11,7 @@ $form = $this->beginWidget('CActiveForm', array(
     ),
         ));
 ?>
-<?php echo $form->errorSummary($item); ?> 
+<?php echo $form->errorSummary($item); ?>
 <div class="item-form">
     <div class="row">
         <div class="span2 offset1">Item Name :</div>
