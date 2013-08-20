@@ -3,7 +3,7 @@ $this->widget('bootstrap.widgets.TbAlert');
 ?>
 <div class="center_form">
     <div class="row text-center">
-        <h1>Đổi mật khẩu</h1>
+        <h1>Change Your Password</h1>
     </div>
     <div style="height:50px"></div>
     <form method='post'>
