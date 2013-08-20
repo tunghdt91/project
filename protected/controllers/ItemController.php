@@ -5,7 +5,13 @@ class ItemController extends Controller
     //put your code here
     public function actionIndex()
     {
-        $this->render('index');
+        $items = Item::model()->findAll();
+        $criteria = new CDbCriteria();
+        $dataProvider=new CActiveDataProvider('Item');
+        $this->render('index', array(
+            'items' => $items,
+            'dataProvider' => $dataProvider,
+        ));
     }
     
     public function actionNewItemData($id)
