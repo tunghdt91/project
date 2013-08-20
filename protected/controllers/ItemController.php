@@ -3,14 +3,26 @@
 class ItemController extends Controller
 {
     //put your code here
-    public function actionIndex()
+    public function actionIndex($year = null, $value1 = null, $value2 = null)
     {
-        $items = Item::model()->findAll();
         $criteria = new CDbCriteria();
-        $dataProvider=new CActiveDataProvider('Item');
+        if ($year != null && $year != 'none') {
+
+        }
+        if ($value1 != null && $value1 != 'none') {
+
+        }
+        if ($value2 != null && $value2 != 'none') {
+            $criteria->addCondition('period_id='.$value2);
+        }
+        $dataProvider=new CActiveDataProvider('Item', array(
+            'criteria' => $criteria
+        ));
         $this->render('index', array(
-            'items' => $items,
             'dataProvider' => $dataProvider,
+            'year' => $year,
+            'value1' => $value1,
+            'value2' => $value2,
         ));
     }
     
