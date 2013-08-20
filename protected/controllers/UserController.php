@@ -2,6 +2,8 @@
 
 class UserController extends Controller
 {
+        /*@author Mr_Khoai
+         */
 	public function actionSignIn()
 	{
             $form = new SigninForm;
@@ -16,7 +18,32 @@ class UserController extends Controller
                 )
             );
 	}
-
+        
+        /*@author Mr_Khoai
+         */
+        public function actionDataSignin() {
+            if (!Yii::app()->request->isAjaxRequest) {
+                $this->render('/site/error', array(
+                    'code' => 403,
+                    'message' => 'Forbidden',
+                ));
+                Yii::app()->end();
+            }
+            
+           if (isset($_POST['value'])) {
+            $results = array();
+            $criteria = new CDbCriteria();
+            $criteria->condition = "parent = ({$_POST['value']})";
+            $kqs = Period::model()->findAll($criteria);
+            foreach ($kqs as $kq) {
+                 $results[$kq->id] = $kq->period_name;
+            }
+            echo json_encode($results);
+           }
+        }
+        
+        /*@author Mr_Khoai
+         */
 	public function actionSignout()
         {
             Yii::app()->user->logout();

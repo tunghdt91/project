@@ -1,3 +1,4 @@
+<script src='<?php echo Yii::app()->baseUrl; ?>/js/signin.js'></script>
 <?php
 $this->widget('bootstrap.widgets.TbAlert');
 ?>
@@ -19,27 +20,37 @@ $this->widget('bootstrap.widgets.TbAlert');
                 'placeholder' => 'Password')); ?>
         </div>
         <div class="row">
-            <div class="span2 offset1">Year</div>
-            <?php
+             <?php
                 echo CHtml::dropDownList('', '', 
-                    array('none' => 'Select', '2013' => '2013', '2014' => '2014'),
-                    array('class' => 'span2 offset3')
+                    array('none' => 'Select') + array('2013'=>'2013', '2014'=>'2014') ,
+                    array(
+                        'class' => 'span2 offset3',
+                    )
                 );
-            ?>
+             ?>
         </div>
         <div class="row">
-            <div class='span2 offset1'>Period</div>
-            <?php
-                echo CHtml::dropDownList('', '', 
-                    array('none' => 'Select', 'Quartal' => 'Quartal', 'Semeter' => 'Semeter'),
-                    array('class' => 'span2 offset3')
-                );
-                echo '&nbsp;';
-                echo CHtml::dropDownList('', '', 
-                    array('none' => 'Select', 'Quartal' => 'Quartal', 'Semeter' => 'Semeter'),
-                    array('class' => 'span2 offset3')
-                );
-            ?>
+                <?php
+                $data = Period::model()->findAllByAttributes(array('parent'=>0));
+                $list = CHtml::listData($data, 'id', 'period_name');
+                    echo CHtml::dropDownList('', '', 
+                        array('none' => 'Select') + $list,
+                        array(
+                            'id' => 'select_1',
+                            'class' => 'span2 offset3'
+                        )
+                    );
+                ?>
+                <?php
+                    echo CHtml::dropDownList('', '', 
+                        array('none' => 'Select') ,
+                        array(
+                            'id' => 'select_2',
+                            'class' => 'span2 offset3',
+                            'disabled' => true,
+                        )
+                    );
+                ?>
         </div>
         <div style="height:20px"></div>
         <div class="row" style="color: blue; font-size: 8px">
