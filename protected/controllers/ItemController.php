@@ -100,8 +100,12 @@ class ItemController extends Controller
         $criteria = new CDbCriteria;
         $criteria->addCondition('parent!=:parent');
         $criteria->params = array(':parent' => 0);
+        
+        $criteria2 = new CDbCriteria;
+        $criteria2->addCondition('parent=:parent');
+        $criteria2->params = array(':parent' => 0);
         $periods = Period::model()->findAll($criteria);
-        $params = Param::model()->findAll($criteria);
+        $params = Param::model()->findAll($criteria2);
         
         if(isset($_POST['Item'])) {
             $item->attributes = $_POST['Item'];
