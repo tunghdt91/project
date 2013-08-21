@@ -36,11 +36,12 @@
 
 <div class="row buttons">
     <?php 
-        echo CHtml::submitButton('Save', array('class' => 'btn btn-primary'));
+        echo CHtml::submitButton('Save', array('class' => 'btn btn-info'));
+        echo '&nbsp;';
         echo CHtml::submitButton(
             'Cancel',
             array(
-                'class' => 'btn btn-primary',
+                'class' => 'btn btn-warning',
                 'submit' => array(
                     'item/index',
                 )
