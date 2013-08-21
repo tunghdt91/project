@@ -40,7 +40,7 @@ class Controller extends CController
                 // broken state
                 Yii::app()->session['current_user'] = User::model()->findByPk(Yii::app()->user->id);
             }
-            $this->current_user = clone Yii::app()->session['current_user'];
+            $this->current_user =  Yii::app()->session['current_user'];
         }
         return parent::beforeAction($action);
     }
