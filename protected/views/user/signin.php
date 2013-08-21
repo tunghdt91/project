@@ -22,8 +22,9 @@ $this->widget('bootstrap.widgets.TbAlert');
         <div class="row">
             <div class="span2 offset1">Year</div>
              <?php
+                $listData_year = CHtml::listData($years, 'code','name');
                 echo CHtml::dropDownList('', '', 
-                    array('none' => 'Select') + array('2013'=>'2013', '2014'=>'2014') ,
+                    array('none' => 'Select') + $listData_year ,
                     array(
                         'class' => 'span2 offset3',
                     )
