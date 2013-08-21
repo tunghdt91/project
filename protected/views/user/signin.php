@@ -1,4 +1,4 @@
-<script src='<?php echo Yii::app()->baseUrl; ?>/js/signin.js'></script>
+<script src='<?php echo Yii::app()->baseUrl; ?>/js/login.js'></script>
 <?php
 $this->widget('bootstrap.widgets.TbAlert');
 ?>
