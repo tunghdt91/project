@@ -7,6 +7,9 @@ class UserController extends Controller
 	public function actionSignIn()
 	{
             $form = new SigninForm;
+            $criteria = new CDbCriteria;
+            $criteria->condition="type LIKE 'year' ORDER BY position ASC";
+            $years = Lookup::model()->findAll($criteria);
             if (isset($_POST['SigninForm'])) {
                 $form->attributes = $_POST['SigninForm'];
                 if ($form->validate() && $form->login()) {
@@ -14,7 +17,8 @@ class UserController extends Controller
                 }
             }
             $this->render('signin', array(
-                'form' => $form
+                'form' => $form,
+                'years' => $years,
                 )
             );
 	}
