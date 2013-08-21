@@ -14,7 +14,9 @@ class UserController extends Controller
                 $form->attributes = $_POST['SigninForm'];
                 if ($form->validate() && $form->login()) {
                     Yii::app()->session['year'] = $_POST["year"];
-                    Yii::app()->session['period'] = $_POST["period"];
+                    if (isset($_POST["period"])) {
+                        Yii::app()->session['period'] = $_POST["period"];
+                    }
                     Yii::app()->request->redirect(Yii::app()->user->returnUrl);
                 }
             }
