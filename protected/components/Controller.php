@@ -38,7 +38,7 @@ class Controller extends CController
 
             if (!isset(Yii::app()->session['current_user'])) {
                 // broken state
-                Yii::app()->session['current_user'] = User::model()->findByPk(Yii::app()->user->id);
+                Yii::app()->session['current_user'] = User::model()->findByAttributes(array('username' => Yii::app()->user->id));
             }
             $this->current_user =  Yii::app()->session['current_user'];
         }

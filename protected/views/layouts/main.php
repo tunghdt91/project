@@ -47,11 +47,7 @@
                                 array('label' => 'Register','icon'=>'tag white', 'url' => array('/user/create'), 'visible' => Yii::app()->user->isGuest),
                                 array('label' => Yii::app()->user->id, 'icon' => 'user white', 'url' => '#', 'visible' => !Yii::app()->user->isGuest,
                                     'items' => array(
-                                        array(
-                                            'label' => 'Change Password',
-                                            'icon' => 'cog',
-                                            'url' => array('user/changePassword'),
-                                        ),
+                                        array('label' => 'Profile', 'icon' => 'align-right', 'url' => array('user/profile')),
                                         array('label' => 'Help', 'icon' => 'flag', 'url' => array('help/help')),
                                         '---',
                                         array('label' => 'Logout', 'icon' => 'icon-share', 'url' => array('user/signout')),
