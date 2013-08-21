@@ -59,10 +59,10 @@ class Param extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'data' => array(self::HAS_ONE, 'Data', 'param_id'),
-			'items' => array(self::HAS_MANY, 'Item', 'param_id'),
-            'children' => array(self::HAS_MANY, 'Param', 'parent'),
-            'parent' => array(self::BELONGS_TO, 'Param', 'parent'),
+                    'data' => array(self::HAS_ONE, 'Data', 'param_id'),
+                    'items' => array(self::HAS_MANY, 'Item', 'param_id'),
+                    'children' => array(self::HAS_MANY, 'Param', 'parent'),
+                    'parent' => array(self::BELONGS_TO, 'Param', 'parent'),
 		);
 	}
 

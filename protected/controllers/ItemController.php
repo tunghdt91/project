@@ -30,9 +30,9 @@ class ItemController extends Controller
     {
         $item = $this->loadModel($id);
         $dataProvider = new CActiveDataProvider(
-            'Item',
+            'Param',
             array('criteria' => array(
-                'condition' => "parent_id = $id",
+                'condition' => "parent = {$item->param_id}",
             ))
         );
         
