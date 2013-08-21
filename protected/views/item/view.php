@@ -5,19 +5,19 @@ $this->widget('zii.widgets.grid.CGridView', array(
     'columns' => array(
         array(
             'name'=>$item->item_name,
-            'value'=>'$data->param_name',
+            'value'=>'$data->param->param_name',
         ),
         array(
             'name'=>'value1',
-            'value'=>'$data->data? ($data->data->value1 ? $data->data->value1 : "") : ""',
+            'value'=>'$data? ($data->value1 ? $data->value1 : "") : ""',
         ),
         array(
             'name'=>'value2',
-            'value'=>'$data->data? ($data->data->value2 ? $data->data->value2 : "") : ""',
+            'value'=>'$data? ($data->value2 ? $data->value2 : "") : ""',
         ),
         array(
             'name'=>'value3',
-            'value'=>'$data->data? ($data->data->value3 ? $data->data->value3 : "") : ""',
+            'value'=>'$data? ($data->value3 ? $data->value3 : "") : ""',
         ),
         array(
             'class'=>'CLinkColumn',
