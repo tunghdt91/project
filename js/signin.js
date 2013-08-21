@@ -2,7 +2,7 @@ $(
     function() {
         $('#select_1').change(function() {
           if (this.value != 'none') {
-              $('#select_2').empty().append('<option selected="selected" value="none">Select</option>');
+              $('#select_2').empty();
               load_data_signin(this.value);
               $('#select_2').removeAttr('disabled');
           } else {
@@ -12,7 +12,7 @@ $(
 
         $('#select_province').change(function() {
            if (this.value != 'none') {
-               $('#select_city').empty().append('<option selected="selected" value="none">Select</option>');
+               $('#select_city').empty();
                load_data_city(this.value);
                $('#select_city').removeAttr('disabled');
            } else {
@@ -22,7 +22,7 @@ $(
         
         $('#select_city').change(function() {
             if (this.value != 'none') {
-                $('#select_district').empty().append('<option selected="selected" value="none">Select</option>');
+                $('#select_district').empty();
                 load_data_district(this.value);
                 $('#select_district').removeAttr('disabled');
             } else {
