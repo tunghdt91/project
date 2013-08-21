@@ -126,4 +126,12 @@ class Data extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
+        public function beforeSave() {
+            if ($this->isNewRecord) 
+                $this->dttm_input = new CDbExpression('NOW()');
+            else
+                $this->dttm_update = new CDbExpression('NOW()');
+            return parent::beforeSave();
+        }
 }
