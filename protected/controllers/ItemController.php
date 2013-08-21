@@ -29,12 +29,11 @@ class ItemController extends Controller
     public function actionView($id)
     {
         $item = $this->loadModel($id);
-        $dataProvider = new CActiveDataProvider(
-            'Param',
-            array('criteria' => array(
-                'condition' => "parent = {$item->param_id}",
-            ))
-        );
+        $criteria = new CDbCriteria;
+        $criteria->addCondition('item_id = '.$id);
+        $dataProvider=new CActiveDataProvider('Data', array(
+            'criteria' => $criteria
+        ));
         
         $this->render(
             'view', 
@@ -67,15 +66,15 @@ class ItemController extends Controller
                         $dt->$t = NULL;
                     }
                 }
-                $dt->dttm_input = date('Y-m-d H:i:s', time());
+                $dt->period_id = Yii::app()->session['period'];
+                $dt->year = Yii::app()->session['year'];
                 $dt->user_input = $this->current_user->id;
                 $dt->status = 2;
                 if ($save) {
-                    if ($dt->save()) {
-                        $this->redirect(array('/item/newdataitem', 'id' => $id));
-                    }
+                    $dt->save();
                 }
             }
+            $this->redirect(array('/item/view', 'id' => $id));
         }
         $this->render(
             'newdataitem',

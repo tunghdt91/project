@@ -23,8 +23,8 @@ $this->widget('bootstrap.widgets.TbAlert');
             <div class="span2 offset1">Year</div>
              <?php
                 $listData_year = CHtml::listData($years, 'code','name');
-                echo CHtml::dropDownList('', '', 
-                    array('none' => 'Select') + $listData_year ,
+                echo CHtml::dropDownList('year', '', 
+                    $listData_year ,
                     array(
                         'class' => 'span2 offset3',
                     )
@@ -37,7 +37,7 @@ $this->widget('bootstrap.widgets.TbAlert');
                 $data = Period::model()->findAllByAttributes(array('parent'=>0));
                 $list = CHtml::listData($data, 'id', 'period_name');
                     echo CHtml::dropDownList('', '', 
-                        array('none' => 'Select') + $list,
+                        $list,
                         array(
                             'id' => 'select_1',
                             'class' => 'span2 offset3'
@@ -45,12 +45,11 @@ $this->widget('bootstrap.widgets.TbAlert');
                     );
                 ?>
                 <?php
-                    echo CHtml::dropDownList('', '', 
-                        array('none' => 'Select') ,
+                    echo CHtml::dropDownList('period', '', 
+                        array() ,
                         array(
                             'id' => 'select_2',
                             'class' => 'span2 offset3',
-                            'disabled' => true,
                         )
                     );
                 ?>
