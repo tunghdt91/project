@@ -23,6 +23,11 @@ class UserController extends Controller
             );
 	}
         
+        public function actionProfile(){
+            $this->render('profile', array(
+                'user' => $this->current_user,
+            ));
+        }
         /*@author Mr_Khoai
          */
         public function actionDataSignin() {
