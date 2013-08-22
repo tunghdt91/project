@@ -68,7 +68,9 @@ class ItemController extends Controller
                 }
                 $dt->period_id = Yii::app()->session['period'];
                 $dt->year = Yii::app()->session['year'];
-                $dt->user_input = $this->current_user->id;
+                if(!empty($this->current_user)) {
+                    $dt->user_input = $this->current_user->id;
+                }
                 $dt->status = 2;
                 if ($save) {
                     $dt->save();
