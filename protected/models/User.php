@@ -130,4 +130,14 @@ class User extends CActiveRecord
         {
             return $this->encryptPassword($password) === $this->password;
         }
+        
+        public function behaviors()
+        {
+            return array(
+                'ImageBehavior' => array(
+                    'class' => 'application.components.ImageBehavior',
+                    'attr' => 'id',
+                ),
+            );
+        }
 }
