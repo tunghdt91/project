@@ -19,13 +19,8 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'name'=>'value3',
             'value'=>'$data? ($data->value3 ? $data->value3 : "") : ""',
         ),
-        array(
-            'class'=>'CLinkColumn',
-            'header'=>'action',
-            'label'=>'view' ,
-            'urlExpression'=>'Yii::app()->createUrl("item/view",array("id"=>$data->id))',
-        ),
 )));
+if ($new) {
     echo CHtml::submitButton(
         'New Data',
         array(
@@ -36,4 +31,16 @@ $this->widget('zii.widgets.grid.CGridView', array(
             )
         )
     );
+} else {
+    echo CHtml::submitButton(
+        'Update data',
+        array(
+            'class' => 'btn btn-primary',
+            'submit' => array(
+                'item/update',
+                'id' => $item->id,
+            )
+        )
+    );
+}
 ?>
