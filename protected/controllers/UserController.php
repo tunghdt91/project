@@ -28,8 +28,9 @@ class UserController extends Controller
 	}
         
         public function actionProfile(){
+            $user = $this->loadModel($this->current_user->id);
             $this->render('profile', array(
-                'user' => $this->current_user,
+                'user' => $user,
             ));
         }
         /*@author Mr_Khoai
@@ -170,5 +171,24 @@ class UserController extends Controller
             'form' => $form
             )
         );
-    }
+        }
+        
+        /*@author Mr_Khoai
+         */
+        public function actionUpdate() {
+            $user = $this->loadModel($this->current_user->id);
+            if(isset($_POST['User'])) {
+                $user->attributes = $_POST['User'];
+                if($user->save()) {
+                    Yii::app()->user->setFlash('success', 'Update success .');
+                    $this->redirect(array('profile', 'id' => $user->id));
+                } else {
+                    Yii::app()->user->setFlash('warning', 'Update false .');
+                    $this->redirect(array('profile', 'id' => $user->id));
+                }    
+            }
+            $this->render('update', array(
+              'user' => $user,  
+            ) );
+        }
 }

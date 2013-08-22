@@ -1,3 +1,4 @@
+<?php $this->widget('bootstrap.widgets.TbAlert'); ?>
 <legend>
     <h3>My info</h3>
 </legend>
@@ -34,3 +35,11 @@
      </tr>
     </tbody>
 </table>
+<?php
+echo CHtml::button('Edit profile', array(
+            'class' => 'btn btn-primary',
+            'submit' => array(
+                'user/update',
+            ))
+        );
+?>
