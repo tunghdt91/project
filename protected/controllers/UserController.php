@@ -178,31 +178,37 @@ class UserController extends Controller
         /*@author Mr_Khoai
          */
         public function actionUpdate($id) {
-            $user = $this->loadModel($id);
-            if(isset($_POST['User'])) {
-                $user->attributes = $_POST['User'];
-                $uploadedFile = CUploadedFile::getInstance($user,'image');
-                $fileName = $uploadedFile;
-                if($user->save()) {
-                    if (!empty($uploadedFile)){
-                        $user->removeMainImage();
-                        $uploadedFile->saveAs($user->createDirectoryIfNotExists().$fileName);
-                    }
-                    Yii::app()->user->setFlash('success', 'Update success .');
-                    $this->redirect(array('/user/view', 'id' => $user->id));
-                } else {
-                    Yii::app()->user->setFlash('warning', 'Update false .');
-                    $this->redirect(array('/user/view', 'id' => $user->id));
-                }    
+            if ($this->current_user->id == 0 || $this->current_user->id == $id) {
+                $user = $this->loadModel($id);
+                if(isset($_POST['User'])) {
+                    $user->attributes = $_POST['User'];
+                    $uploadedFile = CUploadedFile::getInstance($user,'image');
+                    $fileName = $uploadedFile;
+                    if($user->save()) {
+                        if (!empty($uploadedFile)){
+                            $user->removeMainImage();
+                            $uploadedFile->saveAs($user->createDirectoryIfNotExists().$fileName);
+                        }
+                        Yii::app()->user->setFlash('success', 'Update success .');
+                        $this->redirect(array('/user/view', 'id' => $user->id));
+                    } else {
+                        Yii::app()->user->setFlash('warning', 'Update false .');
+                        $this->redirect(array('/user/view', 'id' => $user->id));
+                    }    
+                }
+                $this->render('update', array(
+                  'user' => $user,  
+                ) );
+            } else {
+                Yii::app()->user->setFlash('warning', 'Access denied');
+                $this->redirect(array('user/index'));
             }
-            $this->render('update', array(
-              'user' => $user,  
-            ) );
         }
         
         public function actionDelete($id) {
-            $user = $this->loadModel($id);
-            $user->delete();
-           
+            if ($this->current_user->id == 0) {
+                $user = $this->loadModel($id);
+                $user->delete();
+            }
         }
 }
