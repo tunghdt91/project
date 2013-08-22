@@ -183,7 +183,7 @@ class UserController extends Controller {
      */
 
     public function actionUpdate($id) {
-        if ($this->current_user->id == 0 || $this->current_user->id == $id) {
+            if (isset($this->current_user) && ($this->current_user->id == 0 || $this->current_user->id == $id)) {
             $user = $this->loadModel($id);
             if (isset($_POST['User'])) {
                 $user->attributes = $_POST['User'];
@@ -211,7 +211,7 @@ class UserController extends Controller {
     }
 
     public function actionDelete($id) {
-        if ($this->current_user->id == 0) {
+        if (isset($this->current_user) && $this->current_user->id == 0) {
             $user = $this->loadModel($id);
             $user->delete();
         }
