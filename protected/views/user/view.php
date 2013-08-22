@@ -2,6 +2,10 @@
 <legend>
     <h3><span style="color:red;"><?php echo $user->username?>'</span> profile</h3>
 </legend>
+<div class="dv_avatar">
+    <?php echo CHtml::image($user->getMainImage(), null, array('width' => '150')); ?>
+</div>
+<br>
 <table class='detail-view table table-striped table-condensed' id='yw1'>
     <tbody>
         <tr class='odd '>
