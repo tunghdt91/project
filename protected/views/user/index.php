@@ -7,7 +7,6 @@
 </legend>
 <?php
 $this->widget('zii.widgets.grid.CGridView', array(
-    'id'=>'menu-grid',
     'dataProvider'=>$dataProvider,
     'columns' => array(
         'id',
@@ -16,11 +15,16 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'header'=>'username',
             'labelExpression'=>'$data->username' ,
             'urlExpression'=>'Yii::app()->createUrl("user/view",array("id"=>$data->id))',
+            'htmlOptions'=>array("width"=>"100px"),
         ),
-        'birthday',
+        array(
+            'name' =>'birthday',
+            'htmlOptions'=>array("width"=>"100px"),
+            ),
         'address',
          array(
-            'class'=>'CButtonColumn',
+             'header' => 'Action',
+             'class'=>'CButtonColumn',
              'htmlOptions'=>array("width"=>"100px"),
         ),
     )));

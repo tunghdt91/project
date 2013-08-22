@@ -23,7 +23,7 @@
             <div id="mainmenu">
                 <?php
                 $this->widget('bootstrap.widgets.TbNavbar', array(
-                    'type' => 'inverse',
+                    'type' => '',
                     'collapse' => true,
                     'brand' => 'CRUD Yii framwork',
                     'brandUrl' => '#',
@@ -31,9 +31,9 @@
                         array(
                             'class' => 'bootstrap.widgets.TbMenu',
                             'items' => array(
-                                array('label' => 'Home', 'icon' => 'home white', 'url' => array('/site/index')),
-                                array('label' => 'Contact', 'url' => array('/site/contact'), 'icon' => 'envelope white'),
-                                array('label' => 'Introduction', 'url' => array('/site/about'), 'icon' => 'qrcode white'),
+                                array('label' => 'Home', 'icon' => 'home ', 'url' => array('/site/index')),
+                                array('label' => 'Contact', 'url' => array('/site/contact'), 'icon' => 'envelope '),
+                                array('label' => 'Introduction', 'url' => array('/site/about'), 'icon' => 'qrcode '),
                             )
                         ),
                         '<form class="navbar-search" action=""><input type="text"
@@ -43,9 +43,9 @@
                             'class' => 'bootstrap.widgets.TbMenu',
                             'htmlOptions' => array('class' => 'pull-right'),
                             'items' => array(
-                                array('label' => 'Login','icon' => 'white user', 'url' => array('/user/signin'), 'visible' => Yii::app()->user->isGuest),
-                                array('label' => 'Register','icon'=>'tag white', 'url' => array('/user/create'), 'visible' => Yii::app()->user->isGuest),
-                                array('label' => Yii::app()->user->id, 'icon' => 'user white', 'url' => '#', 'visible' => !Yii::app()->user->isGuest,
+                                array('label' => 'Login','icon' => ' user', 'url' => array('/user/signin'), 'visible' => Yii::app()->user->isGuest),
+                                array('label' => 'Register','icon'=>'tag ', 'url' => array('/user/create'), 'visible' => Yii::app()->user->isGuest),
+                                array('label' => Yii::app()->user->id, 'icon' => 'user ', 'url' => '#', 'visible' => !Yii::app()->user->isGuest,
                                     'items' => array(
                                         array('label' => 'Profile', 'icon' => 'align-right', 'url' => array(
                                             'user/view',
@@ -66,10 +66,10 @@
                     <?php $this->widget('bootstrap.widgets.TbMenu', array(
     'type'=>'list',
     'items'=>array(
-        array('label'=>'ITEM'),
+        array('label'=>'Item Manager'),
         array('label'=>'New Item', 'icon'=>'pencil', 'url'=>array('/item/create')),
         array('label'=>'All Item', 'icon'=>'book', 'url'=>array('/item/index')),
-        array('label'=>'Account'),
+        array('label'=>'User Account'),
         array('label'=>'All user', 'icon'=>'user', 'url'=>array('/user/index')),
        ),
 )); ?>

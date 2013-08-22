@@ -23,6 +23,15 @@
     
     ?>
     <div class="row">
+        <div class="span3">User Name:</div>
+        <?php
+        echo $form->textField($user, 'username', array(
+            'class' => 'text input span2',
+            'disabled' => 'disabled',
+        ));
+        ?>
+    </div>
+    <div class="row">
         <div class="span3">Name:</div>
         <?php
         echo $form->textField($user, 'name', array(
@@ -42,11 +51,14 @@
     </div>  
     <div class="row">
         <div class="span3">Gender:</div>
-        <?php
-        echo $form->textField($user, 'gender', array(
-            'class' => 'text input span4',
-        ));
-        ?>
+        <div class="span7">
+            <?php
+            $user->gender = $this->current_user->gender;
+            echo $form->radioButtonList($user, 'gender', array('M' => 'Male', 'f' => 'Female'), array('separator' => '&nbsp; &nbsp;',
+                'labelOptions' => array('style' => 'display:inline'),
+            ));
+            ?>
+        </div>
     </div>
     <div class="row">
         <div class="span3">Address:</div>
@@ -55,6 +67,15 @@
             'class' => 'text input span4',
         ));
         ?>
+    </div>
+    <div class="row">
+        <?php echo $form->labelEx($user,'Your Picture:'); ?>
+        <?php echo CHtml::activeFileField($user, 'image'); ?>
+    </div>
+    <div class="row">
+        <div class="dv_avatar">
+            <?php echo CHtml::image($user->getMainImage(), null, array('width' => '150')); ?>
+        </div>    
     </div>
      <?php
         echo CHtml::submitButton('Update Now', array(

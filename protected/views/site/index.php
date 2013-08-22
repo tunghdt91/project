@@ -1,4 +1,4 @@
-<div class='clear'></div>
+<div class='clear2'></div>
 <?php $this->widget('bootstrap.widgets.TbAlert'); ?>
 <div class="alert alert-success">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
