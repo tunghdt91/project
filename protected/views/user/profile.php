@@ -2,6 +2,10 @@
 <legend>
     <h3>My info</h3>
 </legend>
+<div class="dv_avatar">
+    <?php echo CHtml::image($user->getMainImage(), null, array('width' => '150')); ?>
+</div>
+<br>
 <table class='detail-view table table-striped table-condensed' id='yw1'>
     <tbody>
         <tr class='odd '>
@@ -40,6 +44,7 @@ echo CHtml::button('Edit profile', array(
             'class' => 'btn btn-primary',
             'submit' => array(
                 'user/update',
+                
             ))
         );
 ?>

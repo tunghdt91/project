@@ -179,7 +179,13 @@ class UserController extends Controller
             $user = $this->loadModel($this->current_user->id);
             if(isset($_POST['User'])) {
                 $user->attributes = $_POST['User'];
+                $uploadedFile = CUploadedFile::getInstance($user,'image');
+                $fileName = $uploadedFile;
                 if($user->save()) {
+                    if (!empty($uploadedFile)){
+                        $user->removeMainImage();
+                        $uploadedFile->saveAs($user->createDirectoryIfNotExists().$fileName);
+                    }
                     Yii::app()->user->setFlash('success', 'Update success .');
                     $this->redirect(array('profile', 'id' => $user->id));
                 } else {

@@ -1,0 +1,16 @@
+/* 
+    Document   : style
+    Created on : Aug 22, 2013, 1:32:04 PM
+    Author     : macbook_001
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.dv_avatar {
+    float:left;
+    width: 150px;
+}
