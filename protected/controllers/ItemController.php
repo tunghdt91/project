@@ -35,13 +35,54 @@ class ItemController extends Controller
             'criteria' => $criteria
         ));
         
+        $datas = Data::model()->findByAttributes(array('item_id' => $id));
+        if ($datas != NULL) {
+            $new = false;
+        } else {
+            $new = true;
+        }
+        
         $this->render(
             'view', 
             array(
                 'item' => $item,
                 'dataProvider' => $dataProvider,
+                'new' => $new,
             )
         );
+    }
+    
+    public function actionUpdate($id)
+    {
+        $item = $this->loadModel($id);
+        $params = $item->param()->children();
+
+        if(sizeof($_POST) != 0) {
+            $datas = $_POST[$item->id];
+            foreach ($datas as $key => $value) {
+                $data = Data::model()->findByAttributes(array('param_id' => $key, 'item_id' => $id));
+                $data->attributes = $value;
+                $data->save(); 
+            }
+            $this->redirect(array('item/view','id'=>$id));
+        }
+        
+        $this->render(
+            'update',
+            array(
+                'item' => $item,
+                'params' => $params,
+            )
+        );
+    }
+    
+    public function actionDelete($id)
+    {
+		$this->loadModel($id)->delete();
+
+		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+		if(!isset($_GET['ajax']))
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
     }
 
 

@@ -60,5 +60,10 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'name'=>'param_id',
             'value'=>'$data->param->param_name',
         ),
+        array(
+            'header'=>'Action',
+            'class'=>'CButtonColumn',
+            'htmlOptions'=>array("width"=>"60px"),
+        ),
     )));
 ?>
