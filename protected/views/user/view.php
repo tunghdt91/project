@@ -1,6 +1,6 @@
 <?php $this->widget('bootstrap.widgets.TbAlert'); ?>
 <legend>
-    <h3>My info</h3>
+    <h3><span style="color:red;"><?php echo $user->username?>'</span> profile</h3>
 </legend>
 <table class='detail-view table table-striped table-condensed' id='yw1'>
     <tbody>
@@ -40,6 +40,14 @@ echo CHtml::button('Edit profile', array(
             'class' => 'btn btn-primary',
             'submit' => array(
                 'user/update',
+                'id' =>$user->id,
+            ))
+        );
+echo '&nbsp;&nbsp;';
+echo CHtml::button('Cancel', array(
+            'class' => 'btn btn-warning',
+            'submit' => array(
+                'user/index',
             ))
         );
 ?>

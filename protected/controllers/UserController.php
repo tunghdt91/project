@@ -2,6 +2,12 @@
 
 class UserController extends Controller
 {
+        public function loadModel($id) {
+            $model = User::model()->findByPk($id);
+            if ($model === null)
+            throw new CHttpException(404, 'The requested page does not exist.');
+        return $model;
+        }
         /*@author Mr_Khoai
          */
 	public function actionSignIn()
@@ -27,9 +33,9 @@ class UserController extends Controller
             );
 	}
         
-        public function actionProfile(){
-            $user = $this->loadModel($this->current_user->id);
-            $this->render('profile', array(
+        public function actionView($id){
+            $user = $this->loadModel($id);
+            $this->render('view', array(
                 'user' => $user,
             ));
         }
@@ -103,12 +109,6 @@ class UserController extends Controller
             Yii::app()->request->redirect($this->createUrl('site/index'));
         }
         
-        public function loadModel($id) {
-            $model = User::model()->findByPk($id);
-            if ($model === null)
-            throw new CHttpException(404, 'The requested page does not exist.');
-        return $model;
-        }
         public function actionCreate() {
             $user = new User;
             $criteria = new CDbCriteria;
@@ -125,9 +125,6 @@ class UserController extends Controller
                 }
                 $user->attributes = $_POST['User'];
                 $user->hobby = $tmp;
-                if (!empty($_POST['User']['birthday'])) {
-                    $user->birthday = DateTime::createFromFormat('d-m-Y', $_POST['User']['birthday'])->format('Y-m-d');
-                }
                 $user->password = md5($_POST['User']['password']);
                 if ($user->save()) {
                   Yii::app()->user->setFlash('success', 'Thank you ! Register Account Complete .');
@@ -143,7 +140,12 @@ class UserController extends Controller
         }
         
         public function actionIndex() {
-            $this->render('index');
+            $dataProvider=new CActiveDataProvider('User');
+            $users = User::model()->findAll();
+            $this->render('index', array(
+                'users' => $users,
+                'dataProvider' => $dataProvider,
+            ));
         }
         
         public function actionChangepassword(){
@@ -175,20 +177,26 @@ class UserController extends Controller
         
         /*@author Mr_Khoai
          */
-        public function actionUpdate() {
-            $user = $this->loadModel($this->current_user->id);
+        public function actionUpdate($id) {
+            $user = $this->loadModel($id);
             if(isset($_POST['User'])) {
                 $user->attributes = $_POST['User'];
                 if($user->save()) {
                     Yii::app()->user->setFlash('success', 'Update success .');
-                    $this->redirect(array('profile', 'id' => $user->id));
+                    $this->redirect(array('/user/view', 'id' => $user->id));
                 } else {
                     Yii::app()->user->setFlash('warning', 'Update false .');
-                    $this->redirect(array('profile', 'id' => $user->id));
+                    $this->redirect(array('/user/view', 'id' => $user->id));
                 }    
             }
             $this->render('update', array(
               'user' => $user,  
             ) );
+        }
+        
+        public function actionDelete($id) {
+            $user = $this->loadModel($id);
+            $user->delete();
+           
         }
 }

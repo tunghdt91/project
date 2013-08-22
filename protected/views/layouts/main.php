@@ -47,7 +47,10 @@
                                 array('label' => 'Register','icon'=>'tag white', 'url' => array('/user/create'), 'visible' => Yii::app()->user->isGuest),
                                 array('label' => Yii::app()->user->id, 'icon' => 'user white', 'url' => '#', 'visible' => !Yii::app()->user->isGuest,
                                     'items' => array(
-                                        array('label' => 'Profile', 'icon' => 'align-right', 'url' => array('user/profile')),
+                                        array('label' => 'Profile', 'icon' => 'align-right', 'url' => array(
+                                            'user/view',
+                                            'id' => empty($this->current_user->id)?'#':$this->current_user->id,
+                                            )),
                                         array('label' => 'Help', 'icon' => 'flag', 'url' => array('help/help')),
                                         '---',
                                         array('label' => 'Logout', 'icon' => 'icon-share', 'url' => array('user/signout')),
@@ -66,11 +69,9 @@
         array('label'=>'ITEM'),
         array('label'=>'New Item', 'icon'=>'pencil', 'url'=>array('/item/create')),
         array('label'=>'All Item', 'icon'=>'book', 'url'=>array('/item/index')),
-        array('label'=>'ANOTHER LIST HEADER'),
-        array('label'=>'link1', 'icon'=>'user', 'url'=>'#'),
-        array('label'=>'link2', 'icon'=>'cog', 'url'=>'#'),
-        array('label'=>'link2', 'icon'=>'flag', 'url'=>'#'),
-    ),
+        array('label'=>'Account'),
+        array('label'=>'All user', 'icon'=>'user', 'url'=>array('/user/index')),
+       ),
 )); ?>
                 </div>
                 <?php echo $content; ?>
