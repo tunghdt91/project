@@ -33,7 +33,7 @@
     <div class="row">
         <div class="span3">Birth day:</div>
         <div class="datetimepicker4 " class="input-append span7">
-            <input class="span4" data-format="dd-MM-yyyy" value ="<?php echo $user->birthday; ?>" type="text" name="User[birthday]" placeholder = 'dd-MM-yyyy'></input>
+            <input class="span4" data-format="yyyy-MM-dd" value ="<?php echo $user->birthday; ?>" type="text" name="User[birthday]" placeholder = 'dd-MM-yyyy'></input>
             <span class="add-on">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                 </i>
@@ -57,7 +57,15 @@
         ?>
     </div>
      <?php
-        echo CHtml::submitButton('Ok', array('class' => 'btn btn-primary'));
+        echo CHtml::submitButton('Update Now', array(
+            'class' => 'btn btn-info'));
+        echo '&nbsp;&nbsp;';
+        echo CHtml::button('Cancel', array(
+            'class' => 'btn btn-warning',
+            'submit' => array(
+                'user/index',
+            ))
+        );
      ?>
     
     <?php $this->endWidget(); ?>   

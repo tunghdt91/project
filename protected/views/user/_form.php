@@ -53,7 +53,7 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class="row">
         <div class="span2 offset1">Birth day:<span class="required">*</span></div>
         <div class="datetimepicker4" class="input-append span7">
-            <input data-format="dd-MM-yyyy" type="text" name="User[birthday]" placeholder = 'dd-MM-yyyy'></input>
+            <input data-format="yyyy-MM-dd" type="text" name="User[birthday]" placeholder = 'yyyy-MM-dd'></input>
             <span class="add-on">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                 </i>
