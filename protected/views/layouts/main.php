@@ -51,7 +51,7 @@
                                             'user/view',
                                             'id' => empty($this->current_user->id)?'#':$this->current_user->id,
                                             )),
-                                        array('label' => 'Help', 'icon' => 'flag', 'url' => array('help/help')),
+                                        array('label' => 'Help', 'icon' => 'flag', 'url' => array('site/help')),
                                         '---',
                                         array('label' => 'Logout', 'icon' => 'icon-share', 'url' => array('user/signout')),
                                     )),
