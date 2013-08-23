@@ -1,5 +1,4 @@
 <script src='<?php echo Yii::app()->baseUrl; ?>/js/bootstrap-datetimepicker.min.js'></script>
-<script src='<?php echo Yii::app()->baseUrl; ?>/js/user.js'></script>
 <script src='<?php echo Yii::app()->baseUrl; ?>/js/signin.js'></script>
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/css/bootstrap-datetimepicker.min.css'); ?>
 <script type="text/javascript">
@@ -7,6 +6,7 @@
         $('.datetimepicker4').datetimepicker({
             pickTime: false
         });
+        $('#select_province').val(<?php echo $user->province_id ?>);
     });
 </script>
 <?php
@@ -40,20 +40,22 @@ $form = $this->beginWidget('CActiveForm', array(
         ?>
     </div>
 
-    <div class="row">
-        <div class="span2 offset1">Password :(<span class="required">*</span>)</div>
-        <?php
-        echo $form->passwordField($user, 'password', array(
-            'class' => 'text input span3',
-            'placeholder' => 'Enter your password'
-        ));
-        ?>
-    </div>
+    <?php
+        if ($user->isNewRecord) {
+            echo '<div class="row">';
+            echo '<div class="span2 offset1">Password :(<span class="required">*</span>)</div>';
+            echo $form->passwordField($user, 'password', array(
+                'class' => 'text input span3',
+                'placeholder' => 'Enter your password'
+            ));
+            echo '</div>';
+        }
+    ?>
 
     <div class="row">
         <div class="span2 offset1">Birth day:<span class="required">*</span></div>
         <div class="datetimepicker4" class="input-append span7">
-            <input data-format="yyyy-MM-dd" type="text" name="User[birthday]" placeholder = 'yyyy-MM-dd'></input>
+            <input class="span3" data-format="yyyy-MM-dd" value ="<?php echo $user->birthday; ?>" type="text" name="User[birthday]" placeholder = 'dd-MM-yyyy'></input>
             <span class="add-on">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                 </i>
@@ -91,7 +93,7 @@ $form = $this->beginWidget('CActiveForm', array(
             array('none' => 'Select'), 
             array(
                 'id' => 'select_city',
-                'disabled' => true,
+                'disabled' => $user->isNewRecord,
             )
         );
         ?>
@@ -104,7 +106,7 @@ $form = $this->beginWidget('CActiveForm', array(
             array('none' => 'Select'), 
             array(
                 'id' => 'select_district',
-                'disabled' => true,
+                'disabled' => $user->isNewRecord,
             )
         );
         ?>
@@ -122,16 +124,22 @@ $form = $this->beginWidget('CActiveForm', array(
         <div class="span2 offset1">Hobby</div>
         <div class="span5">
             <?php 
-                foreach ($hobbies as $hobby) {
+                $hbs = explode('.', $user->hobby);
+                foreach ($hobbies as $key => $hobby) {
+                    $checked = '';
+                    settype($key, 'String');
+                    if (is_int(array_search($key, $hbs))) {
+                        $checked = "checked";
+                    };
                     echo "<div class='row'>";
                         echo "<div class='span3'>";
-                        echo "<input type='checkbox' name= hobby[$hobby->id] value= $hobby->code >";
+                        echo "<input type='checkbox' name= hobby[$hobby->id] value= $hobby->code $checked >";
                         echo "</div>";
-                        
                         echo "<div class='span3'>";
                         echo $hobby->name;
                         echo "</div>";
                     echo "</div>";
+                    $checked = '';
                 }
             ?>
         </div>

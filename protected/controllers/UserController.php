@@ -126,6 +126,7 @@ class UserController extends Controller {
             foreach ($hobbies as $hobby) {
                 if (isset($_POST['hobby'][$hobby->id])) {
                     $tmp .= $_POST['hobby'][$hobby->id];
+                    $tmp .= '.';
                 }
             }
             $user->attributes = $_POST['User'];
@@ -183,10 +184,25 @@ class UserController extends Controller {
      */
 
     public function actionUpdate($id) {
-            if (isset($this->current_user) && ($this->current_user->id == 0 || $this->current_user->id == $id)) {
+        if (isset($this->current_user) && ($this->current_user->id == 0 || $this->current_user->id == $id)) {
             $user = $this->loadModel($id);
+            $criteria = new CDbCriteria;
+            $criteria->condition = "type LIKE 'hobby' ORDER BY code ASC";
+            $hobbies = Lookup::model()->findAll($criteria);
+
             if (isset($_POST['User'])) {
+//                                var_dump($_POST['User']);
+//                                die();
+                $tmp = '';
+                foreach ($hobbies as $hobby) {
+                    if (isset($_POST['hobby'][$hobby->id])) {
+                        $tmp .= $_POST['hobby'][$hobby->id];
+                        $tmp .= '.';
+                    }
+                }
                 $user->attributes = $_POST['User'];
+                $user->hobby = $tmp;
+                
                 $uploadedFile = CUploadedFile::getInstance($user, 'image');
                 $fileName = $uploadedFile;
                 if ($user->save()) {
@@ -198,11 +214,12 @@ class UserController extends Controller {
                     $this->redirect(array('/user/view', 'id' => $user->id));
                 } else {
                     Yii::app()->user->setFlash('warning', 'Update false .');
-                    $this->redirect(array('/user/view', 'id' => $user->id));
+                    //$this->redirect(array('/user/view', 'id' => $user->id));
                 }
             }
             $this->render('update', array(
                 'user' => $user,
+                'hobbies' => $hobbies,
             ));
         } else {
             Yii::app()->user->setFlash('warning', 'Access denied');
