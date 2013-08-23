@@ -74,6 +74,8 @@
         array('label'=>'All Item', 'icon'=>'book', 'url'=>array('/item/index')),
         array('label'=>'User Account'),
         array('label'=>'All user', 'icon'=>'user', 'url'=>array('/user/index')),
+        array('label'=>'Lookup'),
+        array('label'=>'index', 'icon'=>'qrcode', 'url'=>array('/lookup/index')),
        ),
 )); ?>
                 </div>
