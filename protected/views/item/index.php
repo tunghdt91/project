@@ -8,7 +8,7 @@ echo CHtml::button('Show Search ', array('id' => 'show_search', 'class' => 'btn 
 ?>
 <hr>
 
-<?php echo CHtml::beginForm('', 'get', array('id' => 'form_search', 'hidden' => 'hidden')); ?>
+<?php echo CHtml::beginForm('/project/index.php?r=item/index', 'get', array('id' => 'form_search', 'hidden' => 'hidden')); ?>
 <div>
     <div class="row">
         <?php
