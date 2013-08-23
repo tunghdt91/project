@@ -62,6 +62,9 @@ class ItemController extends Controller
             foreach ($datas as $key => $value) {
                 $data = Data::model()->findByAttributes(array('param_id' => $key, 'item_id' => $id));
                 $data->attributes = $value;
+                if(!empty($this->current_user)) {
+                    $data->user_update = $this->current_user->id;
+                }
                 $data->save(); 
             }
             $this->redirect(array('item/view','id'=>$id));
@@ -93,29 +96,17 @@ class ItemController extends Controller
         if(sizeof($_POST) != 0) {
             $datas = $_POST[$item->id];
             foreach ($datas as $key => $value) {
-                $save = false;
-                $dt = new Data;
-                $dt->item_id = $item->id;
-                $dt->param_id = $key;
-                $dt->period_id = $item->period_id;
-                foreach ($value as $key1 => $value1) {
-                    $t = "value{$key1}";
-                    if ($value1 != "") {
-                        $dt->$t = $value1;
-                        $save = true;
-                    } else {
-                        $dt->$t = NULL;
-                    }
-                }
-                $dt->period_id = Yii::app()->session['period'];
-                $dt->year = Yii::app()->session['year'];
+                $data = new Data;
+                $data->attributes = $value;
+                $data->item_id = $item->id;
+                $data->param_id = $key;
+                $data->period_id = Yii::app()->session['period'];
+                $data->year = Yii::app()->session['year'];
                 if(!empty($this->current_user)) {
-                    $dt->user_input = $this->current_user->id;
+                    $data->user_input = $this->current_user->id;
                 }
-                $dt->status = 2;
-                if ($save) {
-                    $dt->save();
-                }
+                $data->status = 2;
+                $data->save();
             }
             $this->redirect(array('/item/view', 'id' => $id));
         }
