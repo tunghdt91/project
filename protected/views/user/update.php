@@ -53,8 +53,7 @@
         <div class="span3">Gender:</div>
         <div class="span7">
             <?php
-            $user->gender = $this->current_user->gender;
-            echo $form->radioButtonList($user, 'gender', array('M' => 'Male', 'f' => 'Female'), array('separator' => '&nbsp; &nbsp;',
+            echo $form->radioButtonList($user, 'gender', array('m' => 'Male', 'f' => 'Female'), array('separator' => '&nbsp; &nbsp;',
                 'labelOptions' => array('style' => 'display:inline'),
             ));
             ?>
@@ -63,9 +62,8 @@
     <div class="row">
         <div class="span3">Address:</div>
         <?php
-        echo $form->textField($user, 'address', array(
-            'class' => 'text input span4',
-        ));
+           echo $form->textArea($user, 'address', array('class' => 'span4', 'rows' => 3,
+            'placeholder' => 'Enter your address'));
         ?>
     </div>
     <div class="row">
